@@ -1,0 +1,13 @@
+<div class="break-badge form-actions row-fluid">
+    <?php if ($this->badge->getStatus() === Model_Badges::FREE): ?>
+        <button name="allocate" value="<?php echo $this->badge->getId(); ?>" class="span3 btn btn-large btn-success sign-free">Freies Schild</button>
+    <?php else: ?>
+        <button name="deallocate" value="<?php echo $this->badge->getId(); ?>" class="span3 btn btn-large btn-danger sign-used">
+            Belegt
+            <?php if ($this->sIp === $this->badge->getIp()) { echo ' <i class="icon-user"></i>'; } ?>
+        </button>
+        <div class="span3 alert alert-warning">
+            <strong>Rest-Zeit: <span data-limit="<?php echo $this->badgeConfig->duration; ?>" data-started="<?php echo $this->badge->getStarted(); ?>"></span> Minuten</strong>
+        </div>
+    <?php endif;?>
+</div>

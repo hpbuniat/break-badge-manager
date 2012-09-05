@@ -1,0 +1,35 @@
+<div class="hero-unit">
+    <form method="POST" action="<?php echo $this->url(array('controller' => 'index', 'action' => 'allocate'));?>">
+        <h1><?php echo $this->sName;?></h1>
+        <?php
+        foreach ($this->badges as $this->badge) {
+            echo $this->render('index/partial/badge.phtml');
+        }
+
+        if (empty($this->badges) === true):
+        ?>
+        <div class="break-badge form-actions row-fluid">
+            <div class="alert alert-error">
+              <strong>Leider gibt es aktuell keine Pausenschilder.</strong>
+            </div>
+        </div>
+        <?php
+        endif;
+        if (empty($this->sSuccessNotice) !== true): ?>
+            <div class="alert alert-success">
+              <strong><?php echo $this->sSuccessNotice; ?></strong>
+            </div>
+        <?php elseif (empty($this->sFailureNotice) !== true): ?>
+            <div class="alert alert-error">
+              <strong><?php echo $this->sFailureNotice; ?></strong>
+            </div>
+        <?php endif; ?>
+    </form>
+</div>
+<hr/>
+<blockquote class="footer">
+    <a href="<?php echo $this->baseUrl();?>">Home</a> -
+    <strong>Anzahl Schilder: <?php echo count($this->badges); ?></strong>
+    <a href="javascript:;" data-sign="plus" class="btn manage sign-plus" href="">+</a>
+    <a href="javascript:;" data-sign="minus" class="btn manage sign-minus" href="">-</a>
+</blockquote>
