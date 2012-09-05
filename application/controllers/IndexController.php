@@ -128,11 +128,11 @@ class IndexController extends Zend_Controller_Action {
                 else {
                     $oPresentBadget = $oMapper->findByIp($oBadge->getIp(), new Model_Badges());
                     if ($oPresentBadget instanceof Model_Badges) {
-                        $this->view->sSuccessNotice = Model_Badges::FAILURE_ALLOCATE;
+                        $this->view->sFailureNotice = Model_Badges::FAILURE_ALLOCATE;
                     }
                     else {
                         $oMapper->save($oBadge);
-                        $this->view->sFailureNotice = Model_Badges::SUCCESS_ALLOCATE;
+                        $this->view->sSuccessNotice = Model_Badges::SUCCESS_ALLOCATE;
                     }
                 }
             }
