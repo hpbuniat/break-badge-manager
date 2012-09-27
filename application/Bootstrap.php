@@ -90,5 +90,13 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
         $oView = $this->getPluginResource('view')->getView();
         $oView->sName = $this->_config->app->name;
     }
+
+    /**
+     * Init the session
+     */
+    protected function _initSession() {
+        Zend_Session::start();
+    }
+
 }
 

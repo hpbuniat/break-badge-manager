@@ -30,6 +30,11 @@ resources.log.stream.filterParams.priority                  = 4
 resources.db.adapter       = "PDO_SQLITE"
 resources.db.params.dbname = APPLICATION_PATH "/../data/badges.db"
 
+resources.session.save_path = APPLICATION_PATH "/../cache"
+resources.session.use_only_cookies = true
+resources.session.remember_me_seconds = 864000
+resources.session.name = breakSession
+
 model.badge.password                                        = "test"
 model.badge.duration                                        = 600
 

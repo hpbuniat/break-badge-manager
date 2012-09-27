@@ -136,11 +136,11 @@ class Model_Badges {
     protected $_iLimit;
 
     /**
-     * The ip-address of the current allocator
+     * The session-id of the current allocator
      *
-     * @var int
+     * @var string
      */
-    protected $_sIp = '';
+    protected $_sSession = '';
 
     /**
      * Create a badge entity
@@ -150,12 +150,12 @@ class Model_Badges {
     public function __construct($aOptions = array()) {
         $this->_iStatus = self::FREE;
         if (empty($aOptions) !== true) {
-            $aOptions['ip'] = Zend_Controller_Front::getInstance()->getRequest()->getServer('REMOTE_ADDR');
+            $aOptions['sessionid'] = Zend_Session::getId();
             if (empty($aOptions['allocate']) !== true) {
-                $this->setIp($aOptions['ip'])->setId($aOptions['allocate'])->setStatus(self::ALLOCATED)->setStarted(time());
+                $this->setSession($aOptions['sessionid'])->setId($aOptions['allocate'])->setStatus(self::ALLOCATED)->setStarted(time());
             }
             elseif (empty($aOptions['deallocate']) !== true) {
-                $this->setIp($aOptions['ip'])->setId($aOptions['deallocate'])->setStatus(self::FREE);
+                $this->setSession($aOptions['sessionid'])->setId($aOptions['deallocate'])->setStatus(self::FREE);
             }
         }
     }
@@ -249,24 +249,24 @@ class Model_Badges {
     }
 
     /**
-     * Set the ip
+     * Set the session-id
      *
-     * @param  string $sIp
+     * @param  string $sSession
      *
      * @return Model_Badges
      */
-    public function setIp($sIp) {
-        $this->_sIp = (string) $sIp;
+    public function setSession($sSession) {
+        $this->_sSession = (string) $sSession;
         return $this;
     }
 
     /**
-     * Get the ip
+     * Get the session-id
      *
      * @return string
      */
-    public function getIp() {
-        return $this->_sIp;
+    public function getSession() {
+        return $this->_sSession;
     }
 }
 

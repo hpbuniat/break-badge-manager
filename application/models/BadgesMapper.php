@@ -77,7 +77,7 @@ class Model_BadgesMapper {
     /**
      * Set the dbtable
      *
-     * @param unknown_type $dbTable
+     * @param  string|Zend_Db_Table_Abstract $dbTable
      *
      * @throws Exception
      *
@@ -119,7 +119,7 @@ class Model_BadgesMapper {
     public function save(Model_Badges $oBadge) {
         $data = array(
             'status' => $oBadge->getStatus(),
-            'ip' => $oBadge->getIp(),
+            'sessionid' => $oBadge->getSession(),
             'started' => date('r', $oBadge->getStarted())
         );
 
@@ -174,16 +174,16 @@ class Model_BadgesMapper {
     }
 
     /**
-     * Find a badge by ip
+     * Find a badge by sessionid
      *
-     * @param  string $sIp
+     * @param  string $sSession
      * @param  Model_Badges $oBadge
      *
      * @return void|Model_Badges
      */
-    public function findByIp($sIp, Model_Badges $oBadge) {
+    public function findBySessionId($sSession, Model_Badges $oBadge) {
         $db = $this->getDbTable();
-        $select = $db->select()->where('ip = ?', $sIp)->where('status = ?', Model_Badges::ALLOCATED);
+        $select = $db->select()->where('sessionid = ?', $sSession)->where('status = ?', Model_Badges::ALLOCATED);
         $result = $db->fetchAll($select);
         if (0 == count($result)) {
             return;
@@ -240,7 +240,7 @@ class Model_BadgesMapper {
      * @return Model_Badges
      */
     protected function _set(Model_Badges $oBadge, Zend_Db_Table_Row_Abstract $oRow) {
-        $oBadge->setIp($oRow->ip)->setTimelimit($this->_oConfig->duration)->setStarted($oRow->started)->setId($oRow->id)->setStatus($oRow->status);
+        $oBadge->setSession($oRow->sessionid)->setTimelimit($this->_oConfig->duration)->setStarted($oRow->started)->setId($oRow->id)->setStatus($oRow->status);
         return $oBadge;
     }
 }

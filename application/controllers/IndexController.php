@@ -56,7 +56,7 @@ class IndexController extends Zend_Controller_Action {
      */
     public function init() {
         $this->view->badgeConfig = Zend_Registry::get('_config')->model->badge;
-        $this->view->sIp = $this->getRequest()->getServer('REMOTE_ADDR');
+        $this->view->sSessionId = Zend_Session::getId();
     }
 
     /**
@@ -117,7 +117,7 @@ class IndexController extends Zend_Controller_Action {
             $oPresentBadget = $oMapper->find($oBadge->getId(), new Model_Badges());
             if ($oPresentBadget instanceof Model_Badges) {
                 if ($oPresentBadget->getStatus() === Model_Badges::ALLOCATED) {
-                    if ($oPresentBadget->getIp() === $oBadge->getIp()) {
+                    if ($oPresentBadget->getSession() === $oBadge->getSession()) {
                         $oMapper->save($oBadge);
                         $this->view->sSuccessNotice = Model_Badges::SUCCESS_FREE;
                     }
@@ -126,7 +126,7 @@ class IndexController extends Zend_Controller_Action {
                     }
                 }
                 else {
-                    $oPresentBadget = $oMapper->findByIp($oBadge->getIp(), new Model_Badges());
+                    $oPresentBadget = $oMapper->findBySessionId($oBadge->getSession(), new Model_Badges());
                     if ($oPresentBadget instanceof Model_Badges) {
                         $this->view->sFailureNotice = Model_Badges::FAILURE_ALLOCATE;
                     }
