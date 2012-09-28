@@ -69,8 +69,6 @@ class IndexController extends Zend_Controller_Action {
 
     /**
      * Add/Remove Badges
-     *
-     * @TODO
      */
     public function manageAction() {
         if ($this->getRequest()->isPost()) {

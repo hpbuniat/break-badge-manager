@@ -1,8 +1,20 @@
 $(function() {
     var $container = $('div.container'),
-        $modal = $('#badgeModal');
-    $container.on('click', 'a', function() {
-        $(this).parents('form:first').submit();
+        $modal = $('#badgeModal'),
+        $form = $('#badgeForm');
+    $form.on('click', 'button', function(e) {
+        var $this = $(this);
+        $form.append($('<input/>', {
+            type: "hidden",
+            value: $this.data('id'),
+            name: 'badge-id'
+        })).append($('<input/>', {
+            type: "hidden",
+            value: $this.attr('name'),
+            name: $this.attr('name')
+        }));
+
+        $form.submit();
     });
 
     $('.sign-used', $container).each(function() {

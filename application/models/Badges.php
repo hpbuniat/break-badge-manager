@@ -152,10 +152,10 @@ class Model_Badges {
         if (empty($aOptions) !== true) {
             $aOptions['sessionid'] = Zend_Session::getId();
             if (empty($aOptions['allocate']) !== true) {
-                $this->setSession($aOptions['sessionid'])->setId($aOptions['allocate'])->setStatus(self::ALLOCATED)->setStarted(time());
+                $this->setSession($aOptions['sessionid'])->setId($aOptions['badge-id'])->setStatus(self::ALLOCATED)->setStarted(time());
             }
             elseif (empty($aOptions['deallocate']) !== true) {
-                $this->setSession($aOptions['sessionid'])->setId($aOptions['deallocate'])->setStatus(self::FREE);
+                $this->setSession($aOptions['sessionid'])->setId($aOptions['badge-id'])->setStatus(self::FREE);
             }
         }
     }

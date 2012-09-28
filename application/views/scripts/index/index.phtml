@@ -1,5 +1,5 @@
 <div class="hero-unit">
-    <form method="POST" action="<?php echo $this->url(array('controller' => 'index', 'action' => 'allocate'));?>">
+    <form id="badgeForm" method="POST" action="<?php echo $this->url(array('controller' => 'index', 'action' => 'allocate'));?>">
         <h1><?php echo $this->sName;?></h1>
         <?php
         foreach ($this->badges as $this->badge) {
