@@ -2,7 +2,7 @@ $(function() {
     var $container = $('div.container'),
         $modal = $('#badgeModal'),
         $form = $('#badgeForm');
-    $form.on('click', 'button', function(e) {
+    $form.on('click', 'button', function() {
         var $this = $(this);
         $form.append($('<input/>', {
             type: "hidden",
@@ -10,11 +10,9 @@ $(function() {
             name: 'badge-id'
         })).append($('<input/>', {
             type: "hidden",
-            value: $this.attr('name'),
-            name: $this.attr('name')
-        }));
-
-        $form.submit();
+            value: $this.data('name'),
+            name: $this.data('name')
+        })).submit();
     });
 
     $('.sign-used', $container).each(function() {
@@ -34,15 +32,12 @@ $(function() {
         var $button = $(this);
         $('a.save-modal').click(function() {
             var input = $("<input/>", {
-                    'type': 'hidden',
-                    'name': 'sign',
-                    'value': $button.data('sign')
-                });
+                'type': 'hidden',
+                'name': 'sign',
+                'value': $button.data('sign')
+            });
 
-            $form = $('#modalForm');
-            $form.append($(input));
-            $form.submit();
-
+            $('#modalForm').append($(input)).submit();
             $modal.modal('hide');
         });
 
@@ -71,7 +66,7 @@ app = {
         }
 
         var m = Math.floor(app.timers[name].left / 60),
-            sec = $.strPad(app.timers[name].left - 60*m, 2, 0);
+            sec = $.strPad(app.timers[name].left - 60 * m, 2, 0);
         target.text((m + ":" + sec));
     },
     restore: function(name) {

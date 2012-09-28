@@ -70,7 +70,6 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
      * Load the logger
      */
     protected function _initLogger() {
-        // wenn cachemanager nicht gelade
         if (!$this->hasPluginResource('log')) {
             return;
         }

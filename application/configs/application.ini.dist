@@ -32,7 +32,7 @@ resources.db.params.dbname = APPLICATION_PATH "/../data/badges.db"
 
 resources.session.save_path = APPLICATION_PATH "/../cache"
 resources.session.use_only_cookies = true
-resources.session.remember_me_seconds = 864000
+resources.session.remember_me_seconds = 86400
 resources.session.name = breakSession
 
 model.badge.password                                        = "test"
