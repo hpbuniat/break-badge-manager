@@ -21,7 +21,7 @@ $(function() {
             name = $this.val();
 
         app.timers[name] = {
-            left: parseInt($timer.data('limit')) - (parseInt(((new Date()).getTime() / 1000) - $timer.data('started'))),
+            left: parseInt($timer.data('left')),
             timer: setInterval(function() {
                 app.timer(name, $timer);
             }, 1000)

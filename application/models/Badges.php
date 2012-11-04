@@ -228,6 +228,19 @@ class Model_Badges {
     }
 
     /**
+     * Get the left-time of this badge
+     *
+     * @return int
+     */
+    public function getLeft() {
+        if ($this->hasExceeded() !== true) {
+            return ($this->_iTimestamp + $this->_iLimit) - time();
+        }
+
+        return 0;
+    }
+
+    /**
      * Set the id
      *
      * @param  int $iId

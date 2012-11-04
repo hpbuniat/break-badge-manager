@@ -7,7 +7,7 @@
             <?php if ($this->sSessionId === $this->badge->getSession()) { echo ' <i class="icon-user"></i>'; } ?>
         </button>
         <div class="span3 alert alert-warning">
-            <strong>Rest-Zeit: <span data-limit="<?php echo $this->badgeConfig->duration; ?>" data-started="<?php echo $this->badge->getStarted(); ?>"></span>&nbsp;Minuten</strong>
+            <strong>Rest-Zeit: <span data-limit="<?php echo $this->badgeConfig->duration; ?>" data-left="<?php echo $this->badge->getLeft(); ?>"><?php echo date('i:s', $this->badge->getLeft()); ?></span>&nbsp;Minuten</strong>
         </div>
     <?php endif;?>
 </div>
