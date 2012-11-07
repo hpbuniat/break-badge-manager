@@ -18,7 +18,7 @@ $(function() {
     $('.sign-used', $container).each(function() {
         var $this = $(this),
             $timer = $this.parents('.form-actions:first').find('strong > span'),
-            name = $this.val();
+            name = $this.data('id');
 
         app.timers[name] = {
             left: parseInt($timer.data('left')),
