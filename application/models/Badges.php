@@ -151,7 +151,7 @@ class Model_Badges {
         $this->_iStatus = self::FREE;
         if (empty($aOptions) !== true) {
             $aOptions['sessionid'] = Zend_Session::getId();
-            if (empty($aOptions['allocate']) !== true) {
+            if (empty($aOptions['allocate']) !== true and $this->getStatus() !== self::ALLOCATED) {
                 $this->setSession($aOptions['sessionid'])->setId($aOptions['badge-id'])->setStatus(self::ALLOCATED)->setStarted(time());
             }
             elseif (empty($aOptions['deallocate']) !== true) {
